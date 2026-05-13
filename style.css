@@ -284,7 +284,7 @@ ul { list-style: none; }
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
   z-index: 0;
   opacity: 0.9;
@@ -294,37 +294,6 @@ ul { list-style: none; }
 
 .hero-video.fade-out {
   opacity: 0;
-}
-
-/* Responsive video adjustments for specific breakpoints */
-@media (max-width: 768px) {
-  .hero-video {
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-video {
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 414px) {
-  .hero-video {
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 375px) {
-  .hero-video {
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 320px) {
-  .hero-video {
-    object-fit: contain;
-  }
 }
 
 .hero-content-hidden {
