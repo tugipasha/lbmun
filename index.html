@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LB MUN 2026 — Model United Nations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-lb">LB</span>
+        <span class="logo-mun">MUN</span>
+        <span class="logo-year">2026</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#committees" class="nav-link">Committees</a></li>
+        <li><a href="#letters" class="nav-link">Letters</a></li>
+        <li><a href="#apply" class="nav-link nav-cta">Apply</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section id="home" class="hero">
+    <!-- One-time video background -->
+    <video class="hero-video" autoplay muted playsinline>
+      <source src="Logolar vs/logo-video.mp4" type="video/mp4">
+    </video>
+
+    <!-- Decorative orbs -->
+    <div class="hero-orb orb-1"></div>
+    <div class="hero-orb orb-2"></div>
+    <div class="hero-orb orb-3"></div>
+
+    <!-- Star field canvas -->
+    <canvas id="stars-canvas"></canvas>
+
+    <div class="hero-content hero-content-hidden">
+      <p class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        Model United Nations Conference
+        <span class="eyebrow-line"></span>
+      </p>
+      <h1 class="hero-heading">
+        <span class="heading-welcome">Welcome to</span>
+        <span class="heading-name">LB MUN<br/>2026</span>
+      </h1>
+      <p class="hero-subtitle">Where Tomorrow's Leaders Shape Today's World</p>
+
+      <!-- Countdown Timer -->
+      <div class="countdown-wrapper">
+        <p class="countdown-label">Conference begins in</p>
+        <div class="countdown-glass">
+          <div class="countdown-unit">
+            <span class="countdown-value" id="days">00</span>
+            <span class="countdown-unit-label">Days</span>
+          </div>
+          <div class="countdown-separator">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-value" id="hours">00</span>
+            <span class="countdown-unit-label">Hours</span>
+          </div>
+          <div class="countdown-separator">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-value" id="minutes">00</span>
+            <span class="countdown-unit-label">Minutes</span>
+          </div>
+          <div class="countdown-separator">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-value" id="seconds">00</span>
+            <span class="countdown-unit-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#apply" class="btn btn-primary">Apply Now</a>
+        <a href="#committees" class="btn btn-ghost">View Committees</a>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== STATS STRIP ========== -->
+  <section class="stats-strip">
+    <div class="stats-container">
+      <div class="stat-item">
+        <span class="stat-number">8</span>
+        <span class="stat-desc">Committees</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">200+</span>
+        <span class="stat-desc">Delegates</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">3</span>
+        <span class="stat-desc">Days of Debate</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">30+</span>
+        <span class="stat-desc">Nations</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LETTERS SECTION ========== -->
+  <section id="letters" class="letters-section">
+    <div class="section-container">
+      <div class="section-header">
+        <p class="section-eyebrow">From the Leadership</p>
+        <h2 class="section-title">Letters of Welcome</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="letters-grid">
+
+        <!-- Secretary-General Letter -->
+        <article class="letter-card">
+          <div class="letter-card-top">
+            <div class="letter-seal">SG</div>
+            <div class="letter-title-block">
+              <h3 class="letter-role">Secretary-General</h3>
+              <p class="letter-name">Lorem Ipsum</p>
+            </div>
+          </div>
+          <div class="letter-ornament"></div>
+          <div class="letter-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra.</p>
+          </div>
+          <div class="letter-signature">
+            <span class="sig-line"></span>
+            <p class="sig-name">Lorem Ipsum</p>
+            <p class="sig-role">Secretary-General, LB MUN 2026</p>
+          </div>
+        </article>
+
+        <!-- Director-General Letter -->
+        <article class="letter-card">
+          <div class="letter-card-top">
+            <div class="letter-seal dg-seal">DG</div>
+            <div class="letter-title-block">
+              <h3 class="letter-role">Director-General</h3>
+              <p class="letter-name">Dolor Sit</p>
+            </div>
+          </div>
+          <div class="letter-ornament"></div>
+          <div class="letter-body">
+            <p>Amet consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            <p>Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+          </div>
+          <div class="letter-signature">
+            <span class="sig-line"></span>
+            <p class="sig-name">Dolor Sit</p>
+            <p class="sig-role">Director-General, LB MUN 2026</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMMITTEES SECTION ========== -->
+  <section id="committees" class="committees-section">
+    <div class="section-container">
+      <div class="section-header">
+        <p class="section-eyebrow">Conference Committees</p>
+        <h2 class="section-title">Choose Your Arena</h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Eight unique committees, each tackling the issues that define our world. Click any committee to learn more.</p>
+      </div>
+
+      <div class="community-cards-container">
+        
+        <!-- Community Card 1: WHO -->
+        <article class="community-card">
+          <div class="community-card-image">
+            <img src="Komunite Resimler/World Health Organization.png" alt="World Health Organization Committee" loading="lazy" />
+          </div>
+          <div class="community-card-content">
+            <span class="card-badge">Beginner</span>
+            <h3 class="card-title">World Health Organization</h3>
+            <p class="card-abbr">WHO</p>
+            <p class="card-snippet">After the industrial revolution and the isolation of humans, psychological and social problems have risen. This occurrence ultimately resulted in increased usage of psychoactive and harmful chemicals. The Group of 77 hopes to change this reality and find ways to offer mental health support to those in need. WHO is responsible for putting an end to this horrible situation.</p>
+            <div class="card-agenda">
+              <strong>Agenda Item:</strong> Achieving the ideal healthcare system in The Group of 77 (G77) to fight against the socioeconomic impacts, physical and psychological effects caused by abuse and addiction.
+            </div>
+          </div>
+        </article>
+
+        <!-- Community Card 2: UNEP -->
+        <article class="community-card">
+          <div class="community-card-image">
+            <img src="Komunite Resimler/UNEP.png" alt="UN Environment Programme Committee" loading="lazy" />
+          </div>
+          <div class="community-card-content">
+            <span class="card-badge intermediate">Intermediate</span>
+            <h3 class="card-title">UN Environment Programme</h3>
+            <p class="card-abbr">UNEP</p>
+            <p class="card-snippet">Global warming affects not only humans, but animals throughout the past years rates of endangered species have gone devastatingly up. Scientists have managed to associate this with global warming. The mission of UNEP is to minimalize the effect of global warming on natural habitats, and to explore ways to protect endangered species.</p>
+            <div class="card-agenda">
+              <strong>Agenda Item:</strong> Addressing the Protection of the Environment and Endangered Species in the Face of Global Warming
+            </div>
+          </div>
+        </article>
+
+        <!-- Community Card 3: UNCOPUOS -->
+        <article class="community-card">
+          <div class="community-card-image">
+            <img src="Komunite Resimler/UNCOPUOS.png" alt="UN Committee on Peaceful Uses of Outer Space" loading="lazy" />
+          </div>
+          <div class="community-card-content">
+            <span class="card-badge advanced">Advanced</span>
+            <h3 class="card-title">Historical United Nations Committee on the Peaceful Uses of Outer Space</h3>
+            <p class="card-abbr">UNCOPUOS</p>
+            <p class="card-snippet">In the ever-changing world after the industrial revolution, humankind has always sought to soar and explore the space. With a mission to create the necessary legal foundation, UNCOPUOS is aimed at creating the outer space treaty. These foundations play a crucial role in allowing organizations such as NASA to function.</p>
+            <div class="card-agenda">
+              <strong>Agenda Item:</strong> Creation of the Outer Space Treaty
+            </div>
+          </div>
+        </article>
+
+        <!-- Community Card 4: H-AIA -->
+        <article class="community-card">
+          <div class="community-card-image">
+            <img src="Komunite Resimler/H-AIA.png" alt="Historical Aerospace Industries Association" loading="lazy" />
+          </div>
+          <div class="community-card-content">
+            <span class="card-badge beginner">Beginner</span>
+            <h3 class="card-title">Historical Aerospace Industries Association</h3>
+            <p class="card-abbr">H-AIA</p>
+            <p class="card-snippet">Established in 1919, the Aerospace Industries Association (AIA) stands as the premier trade organization representing the United States' aerospace and defense sectors. For over a century, AIA has served as the unified voice for the nation's leading manufacturers and suppliers, dedicated to fostering a robust, innovative, and globally dominant industrial base. Headquartered in Arlington, Virginia, the association acts as a vital nexus for industry collaboration.</p>
+            <div class="card-agenda">
+              <strong>Agenda Item:</strong> Open Agenda
+            </div>
+          </div>
+        </article>
+
+        <!-- Community Card 5: G20 -->
+        <article class="community-card">
+          <div class="community-card-image">
+            <img src="Komunite Resimler/G-20.png" alt="Group of Twenty Committee" loading="lazy" />
+          </div>
+          <div class="community-card-content">
+            <span class="card-badge intermediate">Intermediate</span>
+            <h3 class="card-title">Group of Twenty</h3>
+            <p class="card-abbr">G20</p>
+            <p class="card-snippet">G20 is a financial gathering to promote transparency and trust between states. To accomplish global prosperity, this committee hopes to address some of the most crucial problems that the global economy is facing at this time.</p>
+            <div class="card-agenda">
+              <strong>Agenda Item:</strong> Open Agenda
+            </div>
+          </div>
+        </article>
+
+        <!-- Community Card 6: H-NATO -->
+        <article class="community-card">
+          <div class="community-card-image">
+            <img src="Komunite Resimler/H-NATO.png" alt="Historical NATO Committee" loading="lazy" />
+          </div>
+          <div class="community-card-content">
+            <span class="card-badge advanced">Advanced</span>
+            <h3 class="card-title">Historical North Atlantic Treaty Organization</h3>
+            <p class="card-abbr">H-NATO</p>
+            <p class="card-snippet">The case of Saddam Hussein in Iraq became one of the most important international issues in 2003. Saddam Hussein was the leader of Iraq and was accused of developing weapons of mass destruction and supporting terrorism. Because of these claims, the United States and its allies started a military intervention in Iraq in March 2003. NATO countries had different opinions about the operation, and this created debates inside the alliance.</p>
+            <div class="card-agenda">
+              <strong>Agenda Item:</strong> In 2003, the crucial case of Saddam Husein in Iraq
+            </div>
+          </div>
+        </article>
+
+        <!-- Community Card 7: FKK -->
+        <article class="community-card">
+          <div class="community-card-image">
+            <img src="Komunite Resimler/FKK.png" alt="Fantastik Kriz Komitesi" loading="lazy" />
+          </div>
+          <div class="community-card-content">
+            <span class="card-badge intermediate">Intermediate</span>
+            <h3 class="card-title">Fantastik Kriz Komitesi</h3>
+            <p class="card-abbr">FKK</p>
+            <p class="card-snippet">Android üretiminin tekelini elinde barındıran ve merkezi Detroit'te bulunan CyberLife şirketinin katkılarıyla, 2038 yılı itibarıyla androidler günlük yaşam, kamu hizmetleri, üretim, polislik ve askeri hizmetler dahil olmak üzere pek çok sektöre entegre edilmiş ve özellikle Detroit şehrinde âdeta temel işleyişin ayrılmaz bir parçası haline gelmişlerdir. Bu sistem her ne kadar insan yaşamını kolaylaştırsa da pek çok insan, yerini bir androidin alması sebebiyle işsiz kalmış ve toplumda huzursuzluk başlamıştır.</p>
+            <div class="card-agenda">
+              <strong>Gündem:</strong> Detroit: Become Human
+            </div>
+          </div>
+        </article>
+
+        <!-- Community Card 8: JCC -->
+        <article class="community-card">
+          <div class="community-card-image">
+            <img src="Komunite Resimler/JCC.png" alt="Joint Crisis Committee" loading="lazy" />
+          </div>
+          <div class="community-card-content">
+            <span class="card-badge advanced">Advanced</span>
+            <h3 class="card-title">Joint Crisis Committee</h3>
+            <p class="card-abbr">JCC</p>
+            <p class="card-snippet">A Crisis Committee in a Model United Nations (MUN) simulation, particularly one with a small group, is a fast-paced, highly interactive, and less formal committee that simulates intense, real-world emergency scenarios. Unlike General Assemblies (GA) that focus on long-term resolutions, a crisis committee requires immediate action to resolve rapidly changing, often unexpected, events.</p>
+            <div class="card-agenda">
+              <strong>Agenda Item:</strong> 1974 Cyprus Peace Operation
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== APPLY SECTION ========== -->
+  <section id="apply" class="apply-section">
+    <div class="apply-orb"></div>
+    <div class="section-container apply-container">
+      <div class="apply-text">
+        <p class="section-eyebrow">Join the Conference</p>
+        <h2 class="apply-heading">Ready to Make<br/>Your Mark?</h2>
+        <p class="apply-body">Applications for LB MUN 2026 are now open. Secure your position among the brightest young minds in international diplomacy. Limited spots available</p>
+        <ul class="apply-checklist">
+          <li>✦ Free to attend for registered delegates</li>
+          <li>✦ Professional certificates issued</li>
+          <li>✦ Awards for Best Delegate & Honourable Mention</li>
+          <li>✦ Full social programme included</li>
+        </ul>
+        <a href="#" class="btn btn-primary btn-large">Apply Now — It's Free</a>
+      </div>
+      <div class="apply-visual">
+        <div class="apply-card-stack">
+          <div class="stack-card sc-1">Delegate<br/>Certificate</div>
+          <div class="stack-card sc-2">Best<br/>Delegate Award</div>
+          <div class="stack-card sc-3">LB MUN<br/>2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="footer-logo">LB MUN 2026</span>
+        <p class="footer-tagline">Where Tomorrow's Leaders Shape Today's World</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#committees">Committees</a></li>
+          <li><a href="#letters">Letters</a></li>
+          <li><a href="#apply">Apply</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h4>Connect</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 LB MUN. All rights reserved.</p>
+      <p>Built for LB MUN 2026 — Crafted with passion.</p>
+    </div>
+  </footer>
+
+  <!-- ========== MODALS ========== -->
+
+  <!-- WHO Modal -->
+  <div class="modal-overlay" id="modal-who" role="dialog" aria-modal="true" aria-labelledby="modal-who-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-icon">🏥</span>
+        <div>
+          <p class="modal-abbr">WHO</p>
+          <h2 class="modal-title" id="modal-who-title">World Health Organization</h2>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-badge beginner">Beginner</span>
+        <span class="modal-usg">USG: [Name]</span>
+      </div>
+      <p class="modal-description">After the industrial revolution and the isolation of humans, psychological and social problems have risen. This occurrence ultimately resulted in increased usage of psychoactive and harmful chemicals. The Group of 77 hopes to change this reality and find ways to offer mental health support to those in need. WHO is responsible for putting an end to this horrible situation.</p>
+      <div class="modal-agenda">
+        <h4>Agenda Item</h4>
+        <p>Achieving the ideal healthcare system in The Group of 77 (G77) to fight against the socioeconomic impacts, physical and psychological effects caused by abuse and addiction.</p>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm">Download Study Guide</a>
+    </div>
+  </div>
+
+  <!-- UNEP Modal -->
+  <div class="modal-overlay" id="modal-unep" role="dialog" aria-modal="true" aria-labelledby="modal-unep-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-icon">🌍</span>
+        <div>
+          <p class="modal-abbr">UNEP</p>
+          <h2 class="modal-title" id="modal-unep-title">UN Environment Programme</h2>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-badge intermediate">Intermediate</span>
+        <span class="modal-usg">USG: [Name]</span>
+      </div>
+      <p class="modal-description">Global warming affects not only humans, but animals throughout the past years rates of endangered species have gone devastatingly up. Scientists have managed to associate this with global warming. The mission of UNEP is to minimalize the effect of global warming on natural habitats, and to explore ways to protect endangered species.</p>
+      <div class="modal-agenda">
+        <h4>Agenda Item</h4>
+        <p>Addressing the Protection of the Environment and Endangered Species in the Face of Global Warming</p>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm">Download Study Guide</a>
+    </div>
+  </div>
+
+  <!-- UNCOPUOS Modal -->
+  <div class="modal-overlay" id="modal-uncopuos" role="dialog" aria-modal="true" aria-labelledby="modal-uncopuos-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-icon">🚀</span>
+        <div>
+          <p class="modal-abbr">UNCOPUOS</p>
+          <h2 class="modal-title" id="modal-uncopuos-title">Historical United Nations Committee on the Peaceful Uses of Outer Space</h2>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-badge advanced">Advanced</span>
+        <span class="modal-usg">USG: [Name]</span>
+      </div>
+      <p class="modal-description">In the ever-changing world after the industrial revolution, humankind has always sought to soar and explore the space. With a mission to create the necessary legal foundation, UNCOPUOS is aimed at creating the outer space treaty. These foundations play a crucial role in allowing organizations such as NASA to function.</p>
+      <div class="modal-agenda">
+        <h4>Agenda Item</h4>
+        <p>Creation of the Outer Space Treaty</p>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm">Download Study Guide</a>
+    </div>
+  </div>
+
+  <!-- H-AIA Modal -->
+  <div class="modal-overlay" id="modal-haia" role="dialog" aria-modal="true" aria-labelledby="modal-haia-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-icon">✈️</span>
+        <div>
+          <p class="modal-abbr">H-AIA</p>
+          <h2 class="modal-title" id="modal-haia-title">Historical Aerospace Industries Association</h2>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-badge beginner">Beginner</span>
+        <span class="modal-usg">USG: [Name]</span>
+      </div>
+      <p class="modal-description">Established in 1919, the Aerospace Industries Association (AIA) stands as the premier trade organization representing the United States' aerospace and defense sectors. For over a century, AIA has served as the unified voice for the nation's leading manufacturers and suppliers, dedicated to fostering a robust, innovative, and globally dominant industrial base. Headquartered in Arlington, Virginia, the association acts as a vital nexus for industry collaboration. Beyond its advocacy role, AIA conducts rigorous research and public outreach programs designed to ensure the long-term growth and technological superiority of the aerospace sector on the world stage. In this commitee which will initiate from the legendary speech of 40th United States president Ronald Reagen Strategic Defense Initiative (Star Wars), delegates will both work corporately under the American Industries Assosication while still trying to gain advantage over their competitors in the market.</p>
+      <div class="modal-agenda">
+        <h4>Agenda Item</h4>
+        <p>Open Agenda</p>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm">Download Study Guide</a>
+    </div>
+  </div>
+
+  <!-- G20 Modal -->
+  <div class="modal-overlay" id="modal-g20" role="dialog" aria-modal="true" aria-labelledby="modal-g20-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-icon">💹</span>
+        <div>
+          <p class="modal-abbr">G20</p>
+          <h2 class="modal-title" id="modal-g20-title">Group of Twenty</h2>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-badge intermediate">Intermediate</span>
+        <span class="modal-usg">USG: [Name]</span>
+      </div>
+      <p class="modal-description">G20 is a financial gathering to promote transparency and trust between states. To accomplish global prosperity, this committee hopes to address some of the most crucial problems that the global economy is facing at this time.</p>
+      <div class="modal-agenda">
+        <h4>Agenda Item</h4>
+        <p>Open Agenda</p>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm">Download Study Guide</a>
+    </div>
+  </div>
+
+  <!-- H-NATO Modal -->
+  <div class="modal-overlay" id="modal-hnato" role="dialog" aria-modal="true" aria-labelledby="modal-hnato-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-icon">⚔️</span>
+        <div>
+          <p class="modal-abbr">H-NATO</p>
+          <h2 class="modal-title" id="modal-hnato-title">Historical North Atlantic Treaty Organization</h2>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-badge advanced">Advanced</span>
+        <span class="modal-usg">USG: [Name]</span>
+      </div>
+      <p class="modal-description">The case of Saddam Hussein in Iraq became one of the most important international issues in 2003. Saddam Hussein was the leader of Iraq and was accused of developing weapons of mass destruction and supporting terrorism. Because of these claims, the United States and its allies started a military intervention in Iraq in March 2003. NATO countries had different opinions about the operation, and this created debates inside the alliance. While some members supported the intervention, others were against it. The Iraq case had major political, humanitarian, and security consequences for both the Middle East and international relations.</p>
+      <div class="modal-agenda">
+        <h4>Agenda Item</h4>
+        <p>In 2003, the crucial case of Saddam Husein in Iraq</p>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm">Download Study Guide</a>
+    </div>
+  </div>
+
+  <!-- FKK Modal -->
+  <div class="modal-overlay" id="modal-fkk" role="dialog" aria-modal="true" aria-labelledby="modal-fkk-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-icon">🤖</span>
+        <div>
+          <p class="modal-abbr">FKK</p>
+          <h2 class="modal-title" id="modal-fkk-title">Fantastik Kriz Komitesi</h2>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-badge intermediate">Intermediate</span>
+        <span class="modal-usg">USG: [Name]</span>
+      </div>
+      <p class="modal-description">Android üretiminin tekelini elinde barındıran ve merkezi Detroit'te bulunan CyberLife şirketinin katkılarıyla, 2038 yılı itibarıyla androidler günlük yaşam, kamu hizmetleri, üretim, polislik ve askeri hizmetler dahil olmak üzere pek çok sektöre entegre edilmiş ve özellikle Detroit şehrinde âdeta temel işleyişin ayrılmaz bir parçası haline gelmişlerdir. Bu sistem her ne kadar insan yaşamını kolaylaştırsa da pek çok insan, yerini bir androidin alması sebebiyle işsiz kalmış ve toplumda huzursuzluk başlamıştır. Son dönem CyberLife iç raporlarında bazı androidlerde görev gecikmeleri, karar verme süreçlerinde küçük sapmalar ve davranış tutarsızlıkları tespit edilmiş olsa da, bu durum şu anda kritik olmayan sistem hataları olarak değerlendirilmekte ve CyberLife çalışanları bu durumu araştırmaktadır. Peki insan-android işbirliğinde daha iyi bir dünya mı gelecektir yoksa yaklaşan büyük bir tehlike mi vardır?</p>
+      <div class="modal-agenda">
+        <h4>Gündem</h4>
+        <p>Detroit: Become Human</p>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm">Download Study Guide</a>
+    </div>
+  </div>
+
+  <!-- JCC Modal -->
+  <div class="modal-overlay" id="modal-jcc" role="dialog" aria-modal="true" aria-labelledby="modal-jcc-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-icon">🎯</span>
+        <div>
+          <p class="modal-abbr">JCC</p>
+          <h2 class="modal-title" id="modal-jcc-title">Joint Crisis Committee</h2>
+        </div>
+      </div>
+      <div class="modal-meta">
+        <span class="modal-badge advanced">Advanced</span>
+        <span class="modal-usg">USG: [Name]</span>
+      </div>
+      <p class="modal-description">A Crisis Committee in a Model United Nations (MUN) simulation, particularly one with a small group, is a fast-paced, highly interactive, and less formal committee that simulates intense, real-world emergency scenarios. Unlike General Assemblies (GA) that focus on long-term resolutions, a crisis committee requires immediate action to resolve rapidly changing, often unexpected, events.</p>
+      <div class="modal-agenda">
+        <h4>Agenda Item</h4>
+        <p>1974 Cyprus Peace Operation</p>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm">Download Study Guide</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
