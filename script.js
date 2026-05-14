@@ -327,34 +327,45 @@
     statusDiv.className = 'form-status';
     statusDiv.textContent = '';
 
-    // Get form data
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
-
-    // Add timestamp and ID
-    data.timestamp = new Date().toISOString();
-    data.applicationId = 'LB' + Date.now();
-
-    // TODO: Add your Google Apps Script URL here
-    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    // Get submit button
+    const submitBtn = form.querySelector('button[type="submit"]');
 
     try {
       // Show loading state
-      const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
 
-      // Send data to Google Sheets (simulation for now)
-      // Use Google Apps Script for real integration
-      console.log('Application data:', data);
+      // Prepare form data
+      const formData = new FormData(form);
+      const searchParams = new URLSearchParams();
 
-      // Simulate API call (replace with actual Google Apps Script call)
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Add all form fields
+      formData.forEach((value, key) => {
+        searchParams.append(key, value);
+      });
 
-      // Success
+      // Add timestamp and ID
+      searchParams.append('timestamp', new Date().toISOString());
+      searchParams.append('applicationId', 'LB' + Date.now());
+
+      // Log data (for debugging)
+      console.log('Submitting application data:', Object.fromEntries(searchParams));
+
+      // Google Apps Script URL
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwmgUn4itBQI7hvX_XxgA8R8T9mfbff7sKr2TlXx9M1Sz3mplO9Ja41-d0jrlpkYXsBdA/exec';
+
+      // Send data to Google Sheets
+      // Note: Google Apps Script requires no-cors mode for cross-origin requests
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: searchParams
+      });
+
+      // Success - even with no-cors, we assume it worked if no error
       statusDiv.className = 'form-status success';
       statusDiv.textContent = 'Your application has been submitted successfully! Thank you.';
       form.reset();
@@ -363,12 +374,18 @@
       }
       
     } catch (error) {
-      // Error
+      // Error handling
       console.error('Form submission error:', error);
       statusDiv.className = 'form-status error';
-      statusDiv.textContent = 'An error occurred! Please try again.';
+      
+      // Specific error messages
+      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        statusDiv.textContent = 'Network error! Please check your internet connection and try again.';
+      } else {
+        statusDiv.textContent = 'An error occurred! Please try again later.';
+      }
     } finally {
-      const submitBtn = form.querySelector('button[type="submit"]');
+      // Reset button state
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Application';
     }
