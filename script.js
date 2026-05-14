@@ -503,9 +503,9 @@
       statusDiv.className = 'form-status success';
       statusDiv.textContent = 'Your application has been submitted successfully! Thank you.';
       form.reset();
-      if (experienceDetails) {
-        experienceDetails.style.display = 'none';
-      }
+      
+      // Hide all sections after reset
+      hideAllSections();
       
     } catch (error) {
       // Error handling
