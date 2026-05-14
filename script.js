@@ -408,18 +408,40 @@
   // Show section based on application type
   function showRelevantSection(type) {
     hideAllSections();
+    
+    // Remove required from all conditional fields first
+    document.querySelectorAll('#delegate-section [required], #chairboard-section [required], #administrative-section [required], #press-section [required]').forEach(el => {
+      el.removeAttribute('required');
+    });
+    
     switch (type) {
       case 'delegate':
         if (delegateSection) delegateSection.style.display = 'block';
+        // Add required for delegate fields
+        const delMotivation = document.getElementById('delegateMotivation');
+        if (delMotivation) delMotivation.setAttribute('required', 'required');
         break;
       case 'chairboard':
         if (chairboardSection) chairboardSection.style.display = 'block';
+        // Add required for chairboard fields
+        const chairMotivation = document.getElementById('chairboardMotivation');
+        const aiQ = document.getElementById('aiQuestion');
+        const conflictQ = document.getElementById('conflictQuestion');
+        if (chairMotivation) chairMotivation.setAttribute('required', 'required');
+        if (aiQ) aiQ.setAttribute('required', 'required');
+        if (conflictQ) conflictQ.setAttribute('required', 'required');
         break;
       case 'administrative':
         if (adminSection) adminSection.style.display = 'block';
+        // Add required for admin fields
+        const adminMotivation = document.getElementById('adminMotivation');
+        if (adminMotivation) adminMotivation.setAttribute('required', 'required');
         break;
       case 'press':
         if (pressSection) pressSection.style.display = 'block';
+        // Add required for press fields
+        const pressMotivation = document.getElementById('pressMotivation');
+        if (pressMotivation) pressMotivation.setAttribute('required', 'required');
         break;
     }
   }
