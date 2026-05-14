@@ -352,7 +352,7 @@
       console.log('Submitting application data:', Object.fromEntries(searchParams));
 
       // Google Apps Script URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwmgUn4itBQI7hvX_XxgA8R8T9mfbff7sKr2TlXx9M1Sz3mplO9Ja41-d0jrlpkYXsBdA/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSr4atZR06e66wMsvNHiU7PlSERf0ryrzvpChFvLfK4NQrxFYVzak3XqJ0ll9qDWXG7A/exec';
 
       // Send data to Google Sheets
       // Note: Google Apps Script requires no-cors mode for cross-origin requests
