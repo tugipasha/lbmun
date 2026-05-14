@@ -1007,8 +1007,8 @@ ul { list-style: none; }
   padding: 0.9rem 1rem;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  color: var(--text-primary);
-  background: var(--glass-bg);
+  color: #ffffff !important;
+  background: rgba(18, 9, 32, 0.85);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -1024,7 +1024,14 @@ ul { list-style: none; }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group select option {
+  background-color: #120920;
+  color: #ffffff !important;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
 }
 
 .form-group textarea {
