@@ -336,14 +336,125 @@
           <li>✦ Awards for Best Delegate & Honourable Mention</li>
           <li>✦ Full social programme included</li>
         </ul>
-        <a href="#" class="btn btn-primary btn-large">Apply Now — It's Free</a>
       </div>
-      <div class="apply-visual">
-        <div class="apply-card-stack">
-          <div class="stack-card sc-1">Delegate<br/>Certificate</div>
-          <div class="stack-card sc-2">Best<br/>Delegate Award</div>
-          <div class="stack-card sc-3">LB MUN<br/>2026</div>
-        </div>
+      <div class="apply-form-wrapper">
+        <form id="application-form" class="application-form">
+          <h3 class="form-title">Application Form</h3>
+          
+          <!-- Kişisel Bilgiler -->
+          <div class="form-section">
+            <h4 class="form-section-title">Kişisel Bilgiler</h4>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">Ad *</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Adınızı girin">
+              </div>
+              <div class="form-group">
+                <label for="lastName">Soyad *</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Soyadınızı girin">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">E-posta *</label>
+              <input type="email" id="email" name="email" required placeholder="ornek@email.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Telefon Numarası *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+90 555 123 4567">
+            </div>
+            
+            <div class="form-group">
+              <label for="school">Okul *</label>
+              <input type="text" id="school" name="school" required placeholder="Okulunuzun adını girin">
+            </div>
+            
+            <div class="form-group">
+              <label for="grade">Sınıf *</label>
+              <select id="grade" name="grade" required>
+                <option value="">Seçiniz</option>
+                <option value="9">9. Sınıf</option>
+                <option value="10">10. Sınıf</option>
+                <option value="11">11. Sınıf</option>
+                <option value="12">12. Sınıf</option>
+                <option value="university">Üniversite</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- MUN Deneyimi -->
+          <div class="form-section">
+            <h4 class="form-section-title">MUN Deneyimi</h4>
+            
+            <div class="form-group">
+              <label for="experience">Daha önce MUN katıldınız mı? *</label>
+              <div class="radio-group">
+                <label><input type="radio" name="experience" value="yes" required> Evet</label>
+                <label><input type="radio" name="experience" value="no"> Hayır</label>
+              </div>
+            </div>
+            
+            <div class="form-group" id="experience-details" style="display: none;">
+              <label for="pastConferences">Katıldığınız konferanslar (varsa)</label>
+              <textarea id="pastConferences" name="pastConferences" rows="3" placeholder="Katıldığınız konferansları ve rollerinizi belirtin"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="committeePreference">Komite Tercihi *</label>
+              <select id="committeePreference" name="committeePreference" required>
+                <option value="">Seçiniz</option>
+                <option value="WHO">World Health Organization (WHO)</option>
+                <option value="UNEP">UN Environment Programme (UNEP)</option>
+                <option value="UNCOPUOS">Historical UNCOPUOS</option>
+                <option value="H-AIA">Historical Aerospace Industries Association (H-AIA)</option>
+                <option value="G20">Group of Twenty (G20)</option>
+                <option value="H-NATO">Historical NATO (H-NATO)</option>
+                <option value="FKK">Fantastik Kriz Komitesi (FKK)</option>
+                <option value="JCC">Joint Crisis Committee (JCC)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="secondCommitteePreference">2. Komite Tercihi</label>
+              <select id="secondCommitteePreference" name="secondCommitteePreference">
+                <option value="">Seçiniz</option>
+                <option value="WHO">World Health Organization (WHO)</option>
+                <option value="UNEP">UN Environment Programme (UNEP)</option>
+                <option value="UNCOPUOS">Historical UNCOPUOS</option>
+                <option value="H-AIA">Historical Aerospace Industries Association (H-AIA)</option>
+                <option value="G20">Group of Twenty (G20)</option>
+                <option value="H-NATO">Historical NATO (H-NATO)</option>
+                <option value="FKK">Fantastik Kriz Komitesi (FKK)</option>
+                <option value="JCC">Joint Crisis Committee (JCC)</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- İlgi Alanları ve Motive -->
+          <div class="form-section">
+            <h4 class="form-section-title">Kendiniz Hakkında</h4>
+            
+            <div class="form-group">
+              <label for="motivation">Neden LB MUN 2026'ya katılmak istiyorsunuz? *</label>
+              <textarea id="motivation" name="motivation" rows="4" required placeholder="Motivasyonunuzu kısaca açıklayın"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="specialRequests">Özel İstekler / Notlar</label>
+              <textarea id="specialRequests" name="specialRequests" rows="2" placeholder="Varsa özel isteklerinizi belirtin"></textarea>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-large">
+              Başvuruyu Gönder
+            </button>
+          </div>
+          
+          <div id="form-status" class="form-status"></div>
+        </form>
       </div>
     </div>
   </section>

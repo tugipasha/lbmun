@@ -303,4 +303,77 @@
 })();
 
 
+/* ── 8. APPLICATION FORM HANDLER ────────────────────────── */
+(function initApplicationForm() {
+  const form = document.getElementById('application-form');
+  const statusDiv = document.getElementById('form-status');
+  const experienceRadio = document.querySelectorAll('input[name="experience"]');
+  const experienceDetails = document.getElementById('experience-details');
+
+  // Show/hide experience details based on radio selection
+  experienceRadio.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (experienceDetails) {
+        experienceDetails.style.display = radio.value === 'yes' ? 'block' : 'none';
+      }
+    });
+  });
+
+  // Form submission
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Reset status
+    statusDiv.className = 'form-status';
+    statusDiv.textContent = '';
+
+    // Get form data
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+    // Add timestamp and ID
+    data.timestamp = new Date().toISOString();
+    data.applicationId = 'LB' + Date.now();
+
+    // TODO: Buraya Google Apps Script URL'inizi ekleyin
+    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+    try {
+      // Show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Gönderiliyor...';
+
+      // Send data to Google Sheets (simulation for now)
+      // Gerçek entegrasyon için Google Apps Script kullanın
+      console.log('Application data:', data);
+
+      // Simulate API call (gerçekte burayı Google Apps Script ile değiştirin)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Success
+      statusDiv.className = 'form-status success';
+      statusDiv.textContent = 'Başvurunuz başarıyla gönderildi! Teşekkür ederiz.';
+      form.reset();
+      if (experienceDetails) {
+        experienceDetails.style.display = 'none';
+      }
+      
+    } catch (error) {
+      // Error
+      console.error('Form submission error:', error);
+      statusDiv.className = 'form-status error';
+      statusDiv.textContent = 'Bir hata oluştu! Lütfen tekrar deneyin.';
+    } finally {
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Başvuruyu Gönder';
+    }
+  });
+})();
+
+
 /* ── 7. ACTIVE NAV LINK HIGHLIGHT (scroll spy) ─────────── */
