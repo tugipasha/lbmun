@@ -338,25 +338,25 @@
     data.timestamp = new Date().toISOString();
     data.applicationId = 'LB' + Date.now();
 
-    // TODO: Buraya Google Apps Script URL'inizi ekleyin
+    // TODO: Add your Google Apps Script URL here
     const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
     try {
       // Show loading state
       const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Gönderiliyor...';
+      submitBtn.textContent = 'Submitting...';
 
       // Send data to Google Sheets (simulation for now)
-      // Gerçek entegrasyon için Google Apps Script kullanın
+      // Use Google Apps Script for real integration
       console.log('Application data:', data);
 
-      // Simulate API call (gerçekte burayı Google Apps Script ile değiştirin)
+      // Simulate API call (replace with actual Google Apps Script call)
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       // Success
       statusDiv.className = 'form-status success';
-      statusDiv.textContent = 'Başvurunuz başarıyla gönderildi! Teşekkür ederiz.';
+      statusDiv.textContent = 'Your application has been submitted successfully! Thank you.';
       form.reset();
       if (experienceDetails) {
         experienceDetails.style.display = 'none';
@@ -366,11 +366,11 @@
       // Error
       console.error('Form submission error:', error);
       statusDiv.className = 'form-status error';
-      statusDiv.textContent = 'Bir hata oluştu! Lütfen tekrar deneyin.';
+      statusDiv.textContent = 'An error occurred! Please try again.';
     } finally {
       const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Başvuruyu Gönder';
+      submitBtn.textContent = 'Submit Application';
     }
   });
 })();
