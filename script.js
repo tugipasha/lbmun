@@ -389,17 +389,47 @@
 (function initApplicationForm() {
   const form = document.getElementById('application-form');
   const statusDiv = document.getElementById('form-status');
-  const experienceRadio = document.querySelectorAll('input[name="experience"]');
-  const experienceDetails = document.getElementById('experience-details');
+  const applicationTypeSelect = document.getElementById('applicationType');
 
-  // Show/hide experience details based on radio selection
-  experienceRadio.forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (experienceDetails) {
-        experienceDetails.style.display = radio.value === 'yes' ? 'block' : 'none';
-      }
+  // Sections
+  const delegateSection = document.getElementById('delegate-section');
+  const chairboardSection = document.getElementById('chairboard-section');
+  const adminSection = document.getElementById('administrative-section');
+  const pressSection = document.getElementById('press-section');
+
+  // Hide all sections
+  function hideAllSections() {
+    if (delegateSection) delegateSection.style.display = 'none';
+    if (chairboardSection) chairboardSection.style.display = 'none';
+    if (adminSection) adminSection.style.display = 'none';
+    if (pressSection) pressSection.style.display = 'none';
+  }
+
+  // Show section based on application type
+  function showRelevantSection(type) {
+    hideAllSections();
+    switch (type) {
+      case 'delegate':
+        if (delegateSection) delegateSection.style.display = 'block';
+        break;
+      case 'chairboard':
+        if (chairboardSection) chairboardSection.style.display = 'block';
+        break;
+      case 'administrative':
+        if (adminSection) adminSection.style.display = 'block';
+        break;
+      case 'press':
+        if (pressSection) pressSection.style.display = 'block';
+        break;
+    }
+  }
+
+  // Listen for application type change
+  if (applicationTypeSelect) {
+    applicationTypeSelect.addEventListener('change', () => {
+      showRelevantSection(applicationTypeSelect.value);
     });
-  });
+  }
 
   // Form submission
   form.addEventListener('submit', async (e) => {
