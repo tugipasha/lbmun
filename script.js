@@ -48,7 +48,46 @@
 })();
 
 
-/* ── 3. COUNTDOWN TIMER ────────────────────────────────── */
+/* ── 3. STATS COUNTER ANIMATION ────────────────────────────────── */
+(function initStatsCounter() {
+  const statNumbers = document.querySelectorAll('.stat-number');
+  let hasAnimated = false;
+
+  function animateCounter(el) {
+    const target = parseInt(el.getAttribute('data-target'), 10);
+    const suffix = el.getAttribute('data-suffix');
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = Math.floor(current) + suffix;
+    }, 16);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasAnimated) {
+        hasAnimated = true;
+        statNumbers.forEach(el => animateCounter(el));
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const statsSection = document.querySelector('.stats-strip');
+  if (statsSection) {
+    observer.observe(statsSection);
+  }
+})();
+
+
+/* ── 4. COUNTDOWN TIMER ────────────────────────────────── */
 (function initCountdown() {
   const TARGET_DATE = new Date('June 1, 2026 09:00:00').getTime();
 
