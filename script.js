@@ -303,7 +303,50 @@
 })();
 
 
-/* ── 8. APPLICATION FORM HANDLER ────────────────────────── */
+/* ── 8. ONE-TIME VIDEO BACKGROUND WITH FADE ─────────────────────────────── */
+(function initOneTimeVideo() {
+  const video = document.querySelector('.hero-video');
+  const heroContent = document.querySelector('.hero-content');
+  const heroSection = document.getElementById('home');
+  
+  if (!video || !heroContent || !heroSection) {
+    return;
+  }
+
+  // Listen for the video to end OR use a timeout
+  function triggerFade() {
+    video.classList.add('fade-out');
+    
+    setTimeout(() => {
+      heroContent.classList.remove('hero-content-hidden');
+      heroContent.classList.add('hero-content-visible');
+    }, 1250);
+    
+    setTimeout(() => {
+      if (video.parentNode) {
+        video.remove();
+      }
+    }, 2500);
+  }
+
+  video.addEventListener('ended', triggerFade, { once: true });
+  setTimeout(triggerFade, 3000);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        if (video.parentNode) {
+          video.remove();
+        }
+        observer.unobserve(heroSection);
+      }
+    });
+  }, { threshold: 0 });
+
+  observer.observe(heroSection);
+})();
+
+/* ── 9. APPLICATION FORM HANDLER ────────────────────────── */
 (function initApplicationForm() {
   const form = document.getElementById('application-form');
   const statusDiv = document.getElementById('form-status');
