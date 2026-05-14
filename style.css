@@ -917,7 +917,8 @@ ul { list-style: none; }
   padding: 7rem 0;
   background: linear-gradient(180deg, #12081E 0%, #080414 100%);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   width: 100%;
   max-width: 100vw;
 }
@@ -939,8 +940,6 @@ ul { list-style: none; }
   z-index: 1;
   box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
-  overflow: hidden;
 }
 
 /* Application Form Styles */
@@ -1532,13 +1531,15 @@ ul { list-style: none; }
   .modal-title   { font-size: 1.3rem; }
 
   /* Apply section mobile */
+  .apply-section {
+    padding: 4rem 0;
+  }
+
   .apply-container {
-    padding: 0 1rem;
+    gap: 2rem;
   }
 
   /* Form mobile styles - very strict */
-  .apply-section,
-  .apply-container,
   .apply-form-wrapper,
   .application-form {
     width: 100%;
