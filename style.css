@@ -274,7 +274,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse 120% 80% at 60% 40%, #4A2078 0%, #180928 55%, #080414 100%);
+  background: #080414;
   padding: 2rem 0 6rem;
   overflow: hidden;
 }
@@ -287,7 +287,7 @@ ul { list-style: none; }
   object-fit: contain;
   object-position: center center;
   z-index: 0;
-  opacity: 0.9;
+  opacity: 1;
   pointer-events: none;
   transition: opacity 2s ease-in-out;
 }
