@@ -89,7 +89,7 @@
 
 /* ── 4. COUNTDOWN TIMER ────────────────────────────────── */
 (function initCountdown() {
-  const TARGET_DATE = new Date('June 1, 2026 09:00:00').getTime();
+  const TARGET_DATE = new Date('July 1, 2026 09:00:00').getTime();
 
   const daysEl    = document.getElementById('days');
   const hoursEl   = document.getElementById('hours');
