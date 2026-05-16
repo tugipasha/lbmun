@@ -857,6 +857,7 @@ ul { list-style: none; }
 .card-badge.intermediate { background: rgba(59,130,246,0.15); color: #93C5FD; border-color: rgba(147,197,253,0.2); }
 .card-badge.beginner     { background: rgba(16,185,129,0.12); color: #6EE7B7; border-color: rgba(110,231,183,0.2); }
 .card-badge.advanced     { background: rgba(239,68,68,0.12);  color: #FCA5A5; border-color: rgba(252,165,165,0.2); }
+.card-badge.ileri        { background: rgba(239,68,68,0.12);  color: #FCA5A5; border-color: rgba(252,165,165,0.2); }
 
 .card-icon {
   font-size: 2rem;
@@ -1423,6 +1424,7 @@ ul { list-style: none; }
 .modal-badge.intermediate { background: rgba(59,130,246,0.15); color: #93C5FD; border-color: rgba(147,197,253,0.2); }
 .modal-badge.beginner     { background: rgba(16,185,129,0.12); color: #6EE7B7; border-color: rgba(110,231,183,0.2); }
 .modal-badge.advanced     { background: rgba(239,68,68,0.12);  color: #FCA5A5; border-color: rgba(252,165,165,0.2); }
+.modal-badge.ileri        { background: rgba(239,68,68,0.12);  color: #FCA5A5; border-color: rgba(252,165,165,0.2); }
 .modal-usg {
   font-family: var(--font-heading);
   font-size: 0.72rem;
