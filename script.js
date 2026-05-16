@@ -453,6 +453,21 @@
     });
   }
 
+  // ── FKK Knowledge Question Toggle ───────────────────────
+  function setupFkkToggle(checkboxId, panelId) {
+    const cb = document.getElementById(checkboxId);
+    const panel = document.getElementById(panelId);
+    if (!cb || !panel) return;
+    cb.addEventListener('change', () => {
+      panel.style.display = cb.checked ? 'block' : 'none';
+      if (!cb.checked) {
+        panel.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+      }
+    });
+  }
+  setupFkkToggle('delegate-fkk-checkbox', 'delegate-fkk-knowledge');
+  setupFkkToggle('chair-fkk-checkbox',    'chair-fkk-knowledge');
+
   // Form submission
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -486,7 +501,7 @@
       console.log('Submitting application data:', Object.fromEntries(searchParams));
 
       // Google Apps Script URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZfO2efHepNzFHCidsDStTTJf1aNvtB06E9w3CPV_-k81noDBeLRLUgOWcbGviEMXrZw/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjEYGOlALTw9w28L-lnwiZmsGMAi0Zng07nScRGIKNZcIc9x3IoKTegNQOHvbctTDA/exec';
 
       // Send data to Google Sheets
       // Note: Google Apps Script requires no-cors mode for cross-origin requests
