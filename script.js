@@ -2,6 +2,47 @@
    LB MUN 2026 — Main JavaScript
    ========================================================= */
 
+/* ── 0. INSTAGRAM BROWSER DETECTION ───────────────────── */
+(function detectInstagramBrowser() {
+  var ua = navigator.userAgent || '';
+
+  // Instagram WebView injects 'Instagram' into the UA string.
+  // We also catch FB's in-app browser (FBAN/FBAV) as a safety net.
+  var isInstagram = /Instagram/i.test(ua);
+  var isFacebook  = /FBAN|FBAV/i.test(ua);
+
+  if (!isInstagram && !isFacebook) return;
+
+  var overlay = document.getElementById('ig-overlay');
+  var btn     = document.getElementById('ig-overlay-btn');
+  var dismiss = document.getElementById('ig-overlay-dismiss');
+
+  if (!overlay || !btn || !dismiss) return;
+
+  // Build the "open in browser" URL.
+  // On iOS the custom scheme 'googlechrome://' hands off to Chrome;
+  // on Android we fall back to a plain https link which the OS
+  // routes to the default browser.  Using location.href ensures
+  // the correct URL is always used even in local/dev environments.
+  var pageUrl = window.location.href;
+
+  // Android: intent:// scheme with package name forces Chrome specifically
+  var intentUrl = 'intent://' +
+    pageUrl.replace(/^https?:\/\//, '') +
+    '#Intent;scheme=https;action=android.intent.action.VIEW;package=com.android.chrome;end';
+  btn.href = intentUrl;
+
+  // Reveal overlay
+  overlay.style.display = 'flex';
+
+  // Dismiss button — hide overlay and let user continue
+  dismiss.addEventListener('click', function () {
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.3s ease';
+    setTimeout(function () { overlay.style.display = 'none'; }, 300);
+  });
+})();
+
 /* ── 1. NAVBAR SCROLL EFFECT ───────────────────────────── */
 (function initNavbar() {
   const navbar = document.getElementById('navbar');
@@ -452,6 +493,27 @@
       showRelevantSection(applicationTypeSelect.value);
     });
   }
+
+  // ── Max 3 Committee Selection Limit ─────────────────────
+  function setupCommitteeLimit(groupClass, maxSelect) {
+    const checkboxes = document.querySelectorAll('.' + groupClass);
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const checked = document.querySelectorAll('.' + groupClass + ':checked');
+        if (checked.length >= maxSelect) {
+          checkboxes.forEach(other => {
+            if (!other.checked) other.disabled = true;
+          });
+        } else {
+          checkboxes.forEach(other => {
+            other.disabled = false;
+          });
+        }
+      });
+    });
+  }
+  setupCommitteeLimit('delegate-committee-cb', 3);
+  setupCommitteeLimit('chair-committee-cb', 3);
 
   // ── FKK Knowledge Question Toggle ───────────────────────
   function setupFkkToggle(checkboxId, panelId) {
