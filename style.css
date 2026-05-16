@@ -1702,3 +1702,115 @@ ul { list-style: none; }
     max-width: 100%;
   }
 }
+/* ── Instagram Browser Warning Overlay ─────────────────── */
+#ig-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(5, 8, 18, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: igOverlayIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes igOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#ig-overlay-card {
+  background: linear-gradient(145deg, #0f1829 0%, #0a1020 100%);
+  border: 1px solid rgba(232, 200, 74, 0.25);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+  animation: igCardIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes igCardIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#ig-overlay-icon {
+  margin-bottom: 1.25rem;
+}
+
+#ig-overlay-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #e8c84a;
+  margin: 0 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+#ig-overlay-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(220, 230, 255, 0.85);
+  line-height: 1.6;
+  margin: 0 0 0.6rem;
+}
+
+#ig-overlay-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(180, 195, 230, 0.6);
+  line-height: 1.5;
+  margin: 0 0 2rem;
+}
+
+#ig-overlay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #e8c84a 0%, #d4a820 100%);
+  color: #0a0e1a;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: 50px;
+  width: 100%;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 20px rgba(232, 200, 74, 0.35);
+  margin-bottom: 0.85rem;
+}
+
+#ig-overlay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(232, 200, 74, 0.45);
+}
+
+#ig-overlay-btn:active {
+  transform: translateY(0);
+}
+
+#ig-overlay-dismiss {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(220, 230, 255, 0.15);
+  color: rgba(180, 195, 230, 0.5);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  padding: 0.65rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+#ig-overlay-dismiss:hover {
+  border-color: rgba(220, 230, 255, 0.3);
+  color: rgba(180, 195, 230, 0.75);
+}
