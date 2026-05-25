@@ -6,8 +6,6 @@
 (function detectInstagramBrowser() {
   var ua = navigator.userAgent || '';
 
-  // Instagram WebView injects 'Instagram' into the UA string.
-  // We also catch FB's in-app browser (FBAN/FBAV) as a safety net.
   var isInstagram = /Instagram/i.test(ua);
   var isFacebook  = /FBAN|FBAV/i.test(ua);
 
@@ -19,23 +17,15 @@
 
   if (!overlay || !btn || !dismiss) return;
 
-  // Build the "open in browser" URL.
-  // On iOS the custom scheme 'googlechrome://' hands off to Chrome;
-  // on Android we fall back to a plain https link which the OS
-  // routes to the default browser.  Using location.href ensures
-  // the correct URL is always used even in local/dev environments.
   var pageUrl = window.location.href;
 
-  // Android: intent:// scheme with package name forces Chrome specifically
   var intentUrl = 'intent://' +
     pageUrl.replace(/^https?:\/\//, '') +
     '#Intent;scheme=https;action=android.intent.action.VIEW;package=com.android.chrome;end';
   btn.href = intentUrl;
 
-  // Reveal overlay
   overlay.style.display = 'flex';
 
-  // Dismiss button — hide overlay and let user continue
   dismiss.addEventListener('click', function () {
     overlay.style.opacity = '0';
     overlay.style.transition = 'opacity 0.3s ease';
@@ -57,7 +47,7 @@
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // Run once on load in case page is already scrolled
+  onScroll();
 })();
 
 
@@ -77,12 +67,10 @@
 
   hamburger.addEventListener('click', () => toggleMenu());
 
-  // Close nav when any link is tapped
   links.forEach(link => {
     link.addEventListener('click', () => toggleMenu(false));
   });
 
-  // Close nav when resizing past mobile breakpoint
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) toggleMenu(false);
   });
@@ -137,31 +125,21 @@
   const minutesEl = document.getElementById('minutes');
   const secondsEl = document.getElementById('seconds');
 
-  /**
-   * Pads a number to 2 digits.
-   * @param {number} n
-   * @returns {string}
-   */
   function pad(n) {
     return String(Math.max(0, n)).padStart(2, '0');
   }
 
-  /**
-   * Updates the countdown DOM elements.
-   */
   function updateCountdown() {
     const now  = Date.now();
     const diff = TARGET_DATE - now;
 
     if (diff <= 0) {
-      // Conference has started — show zeros and stop
       daysEl.textContent    = '00';
       hoursEl.textContent   = '00';
       minutesEl.textContent = '00';
       secondsEl.textContent = '00';
       clearInterval(timerInterval);
 
-      // Optionally update the label
       const label = document.querySelector('.countdown-label');
       if (label) label.textContent = 'Conference is live!';
       return;
@@ -179,20 +157,15 @@
     secondsEl.textContent = pad(seconds);
   }
 
-  // Run immediately, then every second
   let timerInterval;
   updateCountdown();
   timerInterval = setInterval(updateCountdown, 1000);
 })();
 
 
-/* ── 4. MODAL LOGIC ────────────────────────────────────── */
+/* ── 5. MODAL LOGIC ────────────────────────────────────── */
 (function initModals() {
 
-  /**
-   * Opens a modal by its element or id string.
-   * @param {HTMLElement|string} target
-   */
   function openModal(target) {
     const modal = typeof target === 'string'
       ? document.getElementById(target)
@@ -202,15 +175,10 @@
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
 
-    // Move focus to the close button for accessibility
     const closeBtn = modal.querySelector('.modal-close');
     if (closeBtn) closeBtn.focus();
   }
 
-  /**
-   * Closes a modal by its element or id string.
-   * @param {HTMLElement|string} target
-   */
   function closeModal(target) {
     const modal = typeof target === 'string'
       ? document.getElementById(target)
@@ -221,21 +189,15 @@
     document.body.style.overflow = '';
   }
 
-  /**
-   * Closes all open modals.
-   */
   function closeAllModals() {
     document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m));
   }
 
-  // ── Attach click listeners to every committee card ──
   document.querySelectorAll('.committee-card[data-modal], .community-card[data-modal]').forEach(card => {
     const modalId = card.dataset.modal;
 
-    // Click
     card.addEventListener('click', () => openModal(modalId));
 
-    // Keyboard (Enter / Space) for accessibility
     card.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -244,7 +206,6 @@
     });
   });
 
-  // ── Attach close button listeners ──
   document.querySelectorAll('.modal-close').forEach(btn => {
     btn.addEventListener('click', () => {
       const modal = btn.closest('.modal-overlay');
@@ -252,21 +213,19 @@
     });
   });
 
-  // ── Close modal when clicking outside the content box ──
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', e => {
       if (e.target === overlay) closeModal(overlay);
     });
   });
 
-  // ── Close modal on Escape key ──
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeAllModals();
   });
 })();
 
 
-/* ── 5. STAR FIELD ANIMATION ───────────────────────────── */
+/* ── 6. STAR FIELD ANIMATION ───────────────────────────── */
 (function initStars() {
   const canvas = document.getElementById('stars-canvas');
   if (!canvas) return;
@@ -305,7 +264,6 @@
     animId = requestAnimationFrame(draw);
   }
 
-  // Respect prefers-reduced-motion
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) { canvas.style.display = 'none'; return; }
 
@@ -317,7 +275,7 @@
 })();
 
 
-/* ── 6. SMOOTH REVEAL ON SCROLL (Intersection Observer) ── */
+/* ── 7. SMOOTH REVEAL ON SCROLL (Intersection Observer) ── */
 (function initReveal() {
   const targets = document.querySelectorAll(
     '.committee-card, .community-card, .letter-card, .stat-item, .apply-text, .section-header'
@@ -339,7 +297,6 @@
 
   targets.forEach((el, i) => {
     el.classList.add('reveal-hidden');
-    // Stagger cards in the committees/stats grid
     const delay = (i % 6) * 0.08;
     el.style.transitionDelay = `${delay}s`;
   });
@@ -349,7 +306,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('reveal-visible');
-          observer.unobserve(entry.target); // Fire once
+          observer.unobserve(entry.target);
         }
       });
     },
@@ -360,7 +317,7 @@
 })();
 
 
-/* ── 7. ACTIVE NAV LINK HIGHLIGHT (scroll spy) ─────────── */
+/* ── 8. ACTIVE NAV LINK HIGHLIGHT (scroll spy) ─────────── */
 (function initScrollSpy() {
   const sections = document.querySelectorAll('section[id], footer[id]');
   const navLinks = document.querySelectorAll('.nav-link:not(.nav-cta)');
@@ -383,7 +340,7 @@
 })();
 
 
-/* ── 8. ONE-TIME VIDEO BACKGROUND WITH FADE ─────────────────────────────── */
+/* ── 9. ONE-TIME VIDEO BACKGROUND WITH FADE ─────────────────────────────── */
 (function initOneTimeVideo() {
   const video = document.querySelector('.hero-video');
   const heroContent = document.querySelector('.hero-content');
@@ -393,7 +350,6 @@
     return;
   }
 
-  // Listen for the video to end OR use a timeout
   function triggerFade() {
     video.classList.add('fade-out');
     
@@ -426,19 +382,17 @@
   observer.observe(heroSection);
 })();
 
-/* ── 9. APPLICATION FORM HANDLER ────────────────────────── */
+/* ── 10. APPLICATION FORM HANDLER ────────────────────────── */
 (function initApplicationForm() {
   const form = document.getElementById('application-form');
   const statusDiv = document.getElementById('form-status');
   const applicationTypeSelect = document.getElementById('applicationType');
 
-  // Sections
   const delegateSection = document.getElementById('delegate-section');
   const chairboardSection = document.getElementById('chairboard-section');
   const adminSection = document.getElementById('administrative-section');
   const pressSection = document.getElementById('press-section');
 
-  // Hide all sections
   function hideAllSections() {
     if (delegateSection) delegateSection.style.display = 'none';
     if (chairboardSection) chairboardSection.style.display = 'none';
@@ -446,11 +400,9 @@
     if (pressSection) pressSection.style.display = 'none';
   }
 
-  // Show section based on application type
   function showRelevantSection(type) {
     hideAllSections();
     
-    // Remove required from all conditional fields first
     document.querySelectorAll('#delegate-section [required], #chairboard-section [required], #administrative-section [required], #press-section [required]').forEach(el => {
       el.removeAttribute('required');
     });
@@ -458,13 +410,11 @@
     switch (type) {
       case 'delegate':
         if (delegateSection) delegateSection.style.display = 'block';
-        // Add required for delegate fields
         const delMotivation = document.getElementById('delegateMotivation');
         if (delMotivation) delMotivation.setAttribute('required', 'required');
         break;
       case 'chairboard':
         if (chairboardSection) chairboardSection.style.display = 'block';
-        // Add required for chairboard fields
         const chairMotivation = document.getElementById('chairboardMotivation');
         const aiQ = document.getElementById('aiQuestion');
         const conflictQ = document.getElementById('conflictQuestion');
@@ -474,20 +424,17 @@
         break;
       case 'administrative':
         if (adminSection) adminSection.style.display = 'block';
-        // Add required for admin fields
         const adminMotivation = document.getElementById('adminMotivation');
         if (adminMotivation) adminMotivation.setAttribute('required', 'required');
         break;
       case 'press':
         if (pressSection) pressSection.style.display = 'block';
-        // Add required for press fields
         const pressMotivation = document.getElementById('pressMotivation');
         if (pressMotivation) pressMotivation.setAttribute('required', 'required');
         break;
     }
   }
 
-  // Listen for application type change
   if (applicationTypeSelect) {
     applicationTypeSelect.addEventListener('change', () => {
       showRelevantSection(applicationTypeSelect.value);
@@ -530,78 +477,56 @@
   setupFkkToggle('delegate-fkk-checkbox', 'delegate-fkk-knowledge');
   setupFkkToggle('chair-fkk-checkbox',    'chair-fkk-knowledge');
 
-  // Form submission
+  // ── Form Submission ──────────────────────────────────────
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Reset status
     statusDiv.className = 'form-status';
     statusDiv.textContent = '';
 
-    // Get submit button
     const submitBtn = form.querySelector('button[type="submit"]');
 
     try {
-      // Show loading state
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
 
-      // Prepare form data
       const formData = new FormData(form);
       const searchParams = new URLSearchParams();
 
-      // Add all form fields
       formData.forEach((value, key) => {
         searchParams.append(key, value);
       });
 
-      // Add timestamp and ID
       searchParams.append('timestamp', new Date().toISOString());
       searchParams.append('applicationId', 'LB' + Date.now());
 
-      // Log data (for debugging)
       console.log('Submitting application data:', Object.fromEntries(searchParams));
 
-      // Google Apps Script URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLOUqEGBcFUPAXoDpQjRLuXlD2s4WEJz3VQ8RCvQERpGvm-8iGJzSxyohHk1ojmx6Jhg/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykfZqLNfPsyj4DivxH5iq5L55MLV62UwcCsP4_7H1tFGjDeZ9xR-Qner7J8GoT-vAubw/exec';
 
-      // Send data to Google Sheets
-      // Note: Google Apps Script requires no-cors mode for cross-origin requests
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: searchParams
+      // GET ile gönder — no-cors POST bazen Google tarafından yutulur
+      await fetch(GOOGLE_SCRIPT_URL + '?' + searchParams.toString(), {
+        method: 'GET',
+        mode: 'no-cors'
       });
 
-      // Success - even with no-cors, we assume it worked if no error
       statusDiv.className = 'form-status success';
       statusDiv.textContent = 'Your application has been submitted successfully! Thank you.';
       form.reset();
-      
-      // Hide all sections after reset
       hideAllSections();
-      
+
     } catch (error) {
-      // Error handling
       console.error('Form submission error:', error);
       statusDiv.className = 'form-status error';
-      
-      // Specific error messages
+
       if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
         statusDiv.textContent = 'Network error! Please check your internet connection and try again.';
       } else {
         statusDiv.textContent = 'An error occurred! Please try again later.';
       }
     } finally {
-      // Reset button state
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Application';
     }
   });
 })();
-
-
-/* ── 7. ACTIVE NAV LINK HIGHLIGHT (scroll spy) ─────────── */
