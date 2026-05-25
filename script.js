@@ -502,7 +502,7 @@
 
       console.log('Submitting application data:', Object.fromEntries(searchParams));
 
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykfZqLNfPsyj4DivxH5iq5L55MLV62UwcCsP4_7H1tFGjDeZ9xR-Qner7J8GoT-vAubw/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvOGLVJGmCkJkZZ9_jVjN-qQ-L4IY1RQXc-F6xefCwgasRzA5m0YMb01rtcN9MlcXG7A/exec';
 
       // GET ile gönder — no-cors POST bazen Google tarafından yutulur
       await fetch(GOOGLE_SCRIPT_URL + '?' + searchParams.toString(), {
