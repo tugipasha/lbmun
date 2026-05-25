@@ -550,10 +550,32 @@
       const formData = new FormData(form);
       const searchParams = new URLSearchParams();
 
-      // Add all form fields
+      // Collect committee checkbox values (multi-value fields)
+      // These come in as repeated keys: "committees" and "chairCommittees"
+      const delegateCommittees = formData.getAll('committees');
+      const chairCommittees    = formData.getAll('chairCommittees');
+
+      // Add all non-committee fields normally
       formData.forEach((value, key) => {
+        if (key === 'committees' || key === 'chairCommittees') return;
         searchParams.append(key, value);
       });
+
+      // Map selected committees → committee1, committee2, committee3
+      // (whichever group is active based on applicationType)
+      const selectedCommittees = delegateCommittees.length > 0
+        ? delegateCommittees
+        : chairCommittees;
+
+      selectedCommittees.forEach((val, i) => {
+        searchParams.append('committee' + (i + 1), val);
+      });
+
+      // Ensure committee2 and committee3 exist even if not selected
+      // so the sheet columns always receive a value (empty string)
+      for (let i = selectedCommittees.length + 1; i <= 3; i++) {
+        searchParams.append('committee' + i, '');
+      }
 
       // Add timestamp and ID
       searchParams.append('timestamp', new Date().toISOString());
@@ -601,7 +623,7 @@
       submitBtn.textContent = 'Submit Application';
     }
   });
-})();   
+})();
 
 
 /* ── 7. ACTIVE NAV LINK HIGHLIGHT (scroll spy) ─────────── */
